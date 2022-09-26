@@ -16,7 +16,7 @@
         "-std=c++23",
         "-Wall",
         "-Wextra",
-        "-fexec-charset=GBK",
+        "-fexec-charset=UTF-8",
         "-g",
         "${file}",
         "-o",

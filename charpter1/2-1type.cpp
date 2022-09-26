@@ -1,3 +1,12 @@
+/*
+ * @Descripttion: MyCode
+ * @version: 
+ * @Author: CGPan
+ * @Date: 2022-08-03 19:55:19
+ * @LastEditors: CGPan
+ * @LastEditTime: 2022-09-26 22:03:53
+ */
+
 #include <iostream>
 
 using namespace std;
