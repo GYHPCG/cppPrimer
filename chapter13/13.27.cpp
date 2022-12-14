@@ -3,17 +3,17 @@
  * @Author: CGPan
  * @Date: 2022-10-10 19:54:23
  * @LastEditors: CGPan
- * @LastEditTime: 2022-10-10 20:33:33
+ * @LastEditTime: 2022-11-21 22:42:00
  */
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
 //创建一个类似于share_pointer指针的类，当类的引用计数为0时，才销毁
 class HasPtr {
     private:
         string* value;
-        int i;
+        mutable int i;
         unsigned int* use;//当做引用计数
     public:
         HasPtr(const string& s = string()):value(new string(s)),i(0),use(new unsigned(1)){};
@@ -24,6 +24,10 @@ class HasPtr {
         HasPtr& operator=(const HasPtr& p);
         int getUse() {
             return *use;
+        }
+        int get_i() const {
+            i = 7;
+            return i;
         }
         ~HasPtr();
 
@@ -61,6 +65,10 @@ int main()
     cout << "p2.use: " << p2.getUse() << endl;//p2.use: 3
     cout << "p3.use: " << p2.getUse() << endl;//p3.use: 3
     //~HasPtr is called
+    //const HasPtr p1;
+    //p1.get_i();
+    vector<int> vec(3,0);
+    cout << vec.at(3);
     return 0;
 
 }

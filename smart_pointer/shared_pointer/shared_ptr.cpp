@@ -3,11 +3,11 @@
  * @Author: CGPan
  * @Date: 2022-09-24 18:54:47
  * @LastEditors: CGPan
- * @LastEditTime: 2022-10-04 20:50:25
+ * @LastEditTime: 2022-11-21 23:02:55
  */
 #include "dog.h"
 #include <iostream>
-
+#include <bits/stdc++.h>
 #include <memory>
 using namespace std;
 void share(shared_ptr<int>x) {
@@ -18,6 +18,7 @@ int main()
 
     //普通类型，可使用use_count()查看指针指向的内容被共享次数,本质其实就是多个指针指向同一个内存
     shared_ptr<int> sptr = make_shared<int>(100);
+    assert(sptr && *sptr == 100);
     // cout << sizeof(sptr) << endl;//16个字节
     // cout << " sptr count: " << sptr.use_count() << endl;
     // cout << " sptr address: " << sptr.get() << " " << &sptr<< endl;
@@ -44,6 +45,7 @@ int main()
     // cout << p2.use_count() << endl;
     // cout << *p2 << endl;
     share(shared_ptr<int>(p1));//显示将普通指针和智能指针混合使用，容易出问题
+    [[gnu::unused]]
     int pi = *p1;
     //cout << pi << endl;//未知值，因为share()离开作用域时，智能指针delete掉了，那块地址消失了，
     //将普通指针强转为智能指针，在函数调用时，引用次数不会增加。
@@ -54,6 +56,7 @@ int main()
     /// @return
     //可以用get获取智能指针指向的地址，从而变为普通指针
     //用普通指针获取得到智能指针指向的地址，又赋值给新的智能指针，引用次数不会增加。
+    [[gnu::unused]]
     int *p4 = p2.get();
     shared_ptr<int>p5(p2);
     cout << p5.use_count() << endl; 
